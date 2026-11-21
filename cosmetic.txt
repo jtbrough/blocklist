@@ -1,0 +1,23 @@
+! Browser filters for uBlock Origin and AdGuard (Safari): page elements and requests that DNS cannot remove.
+! Published as cosmetic.txt next to the domain lists.
+
+! Google Sign-In (One Tap and the sign-in button)
+accounts.google.com/gsi/*
+
+! eBay Live: hide every module built from eBay's "live" class families (all regional sites)
+ebay.*##[class*="dp-live-"]
+ebay.*##[class*="dp-hero-live"]
+ebay.*##[class*="dp-topo-ebay-live"]
+ebay.*##[class*="dp-search-live-"]
+ebay.*##[class*="dp-see-all-live"]
+ebay.*##[class*="dp-spacing-live"]
+ebay.*##[class*="live-event-video-"]
+ebay.*##[class*="vl-live-event-"]
+ebay.*##[class*="-branded-live"]
+ebay.*##[class*="pulsating-dot-live"]
+ebay.*##[class*="gh-sell-link__flyout--live"]
+ebay.*##[class*="su-live-indicator"]
+ebay.*##li.carousel__snap-point:has(a[href*="/ebaylive"])
+
+! eBay Live: block the third-party live-video host
+||shoplive.cloud^

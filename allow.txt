@@ -1,0 +1,2 @@
+# Domains to unblock: removed from the output, together with their subdomains.
+# If a parent domain is still blocked the build warns: that case needs an allow rule in the DNS server.

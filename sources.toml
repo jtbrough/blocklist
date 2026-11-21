@@ -1,0 +1,187 @@
+# Blocklist sources. tiers: "full" = every source; "lite" = the ad/tracker sources only.
+# min_entries guards against a source that is empty or truncated; any failing source stops the build,
+# so the previously published list stays in place.
+
+[[source]]
+name = "hagezi-pro"
+url = "https://hagezi-mirror.dnsbunker.org/adblock/pro.txt"
+format = "adblock"
+tiers = ["lite", "full"]
+min_entries = 150000
+
+[[source]]
+name = "hagezi-tif"
+url = "https://hagezi-mirror.dnsbunker.org/adblock/tif.txt"
+format = "adblock"
+tiers = ["full"]
+min_entries = 1000000
+
+# --- Firebog "ticked" sources ---
+[[source]]
+name = "kadhosts"
+url = "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 30000
+
+[[source]]
+name = "hosts-extras-spam"
+url = "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Spam/hosts"
+format = "plain"
+tiers = ["full"]
+min_entries = 30
+
+[[source]]
+name = "w3kbl"
+url = "https://v.firebog.net/hosts/static/w3kbl.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 200
+
+[[source]]
+name = "adaway"
+url = "https://adaway.org/hosts.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 4000
+
+[[source]]
+name = "adguard-dns"
+url = "https://v.firebog.net/hosts/AdguardDNS.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 100000
+
+[[source]]
+name = "admiral"
+url = "https://v.firebog.net/hosts/Admiral.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 1000
+
+[[source]]
+name = "anudeep-adservers"
+url = "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 25000
+
+[[source]]
+name = "easylist"
+url = "https://v.firebog.net/hosts/Easylist.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 30000
+
+[[source]]
+name = "yoyo-adservers"
+url = "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 2000
+
+[[source]]
+name = "hosts-extras-unchecky"
+url = "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts"
+format = "plain"
+tiers = ["full"]
+min_entries = 3
+
+[[source]]
+name = "hostsvn"
+url = "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 10000
+
+[[source]]
+name = "easyprivacy"
+url = "https://v.firebog.net/hosts/Easyprivacy.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 25000
+
+[[source]]
+name = "prigent-ads"
+url = "https://v.firebog.net/hosts/Prigent-Ads.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 2500
+
+# CRLF source: the old pipeline dropped every line of it.
+[[source]]
+name = "hosts-extras-2o7net"
+url = "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 1000
+
+[[source]]
+name = "windows-spy-blocker"
+url = "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 200
+
+[[source]]
+name = "frogeye-first-party"
+url = "https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt"
+format = "plain"
+tiers = ["lite", "full"]
+min_entries = 8000
+
+[[source]]
+name = "anti-malware-hosts"
+url = "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt"
+format = "plain"
+tiers = ["full"]
+min_entries = 6000
+
+[[source]]
+name = "prigent-crypto"
+url = "https://v.firebog.net/hosts/Prigent-Crypto.txt"
+format = "plain"
+tiers = ["full"]
+min_entries = 6000
+
+[[source]]
+name = "hosts-extras-risk"
+url = "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Risk/hosts"
+format = "plain"
+tiers = ["full"]
+min_entries = 1000
+
+[[source]]
+name = "phishing-army-extended"
+url = "https://phishing.army/download/phishing_army_blocklist_extended.txt"
+format = "plain"
+tiers = ["full"]
+min_entries = 80000
+
+[[source]]
+name = "notrack-malware"
+url = "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"
+format = "plain"
+tiers = ["full"]
+min_entries = 60
+
+[[source]]
+name = "spam404"
+url = "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt"
+format = "plain"
+tiers = ["full"]
+min_entries = 4000
+
+[[source]]
+name = "stalkerware-indicators"
+url = "https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts"
+format = "plain"
+tiers = ["full"]
+min_entries = 500
+
+[[source]]
+name = "cyberhost-malware"
+url = "https://lists.cyberhost.uk/malware.txt"
+format = "plain"
+tiers = ["full"]
+min_entries = 50000

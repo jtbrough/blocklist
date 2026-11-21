@@ -1,0 +1,26 @@
+# Domains that must never be blocked (and never have a blocked parent). The build fails if one is.
+github.com
+githubusercontent.com
+raw.githubusercontent.com
+google.com
+gstatic.com
+cloudflare.com
+cloudflare-dns.com
+apple.com
+icloud.com
+microsoft.com
+windowsupdate.com
+amazon.com
+amazonaws.com
+home-assistant.io
+open-meteo.com
+api.open-meteo.com
+pirateweather.net
+pool.ntp.org
+time.nist.gov
+ntp.org
+fedoraproject.org
+ecoflow.com
+lgthinq.com
+samsung.com
+samsungcloudsolution.net
