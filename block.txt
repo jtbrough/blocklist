@@ -1,1 +1,4 @@
 # Extra domains to block, on top of the sources (both tiers).
+
+# eBay Live video previews and streams (third-party vendor Shoplive); the phone app has no browser filter
+shoplive.cloud
