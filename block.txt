@@ -2,3 +2,9 @@
 
 # eBay Live video previews and streams (third-party vendor Shoplive); the phone app has no browser filter
 shoplive.cloud
+
+# DoH canaries: NXDOMAIN tells Firefox and Apple devices to keep using this resolver
+# (Firefox DoH off, iCloud Private Relay unavailable on this network)
+use-application-dns.net
+mask.icloud.com
+mask-h2.icloud.com
