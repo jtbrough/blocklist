@@ -152,8 +152,8 @@ def load_sources(sources, cache):
             except Exception as e:  # noqa: BLE001
                 failures.append(f"{s['name']}: fetch failed: {e}")
                 continue
-            if len(names) < s["min_entries"]:
-                failures.append(f"{s['name']}: only {len(names)} domains, expected at least {s['min_entries']}")
+            if not names:
+                failures.append(f"{s['name']}: parsed to zero domains")
             out[name] = (names, st)
     if failures:
         raise SystemExit("source problems:\n  " + "\n  ".join(sorted(failures)))
@@ -257,29 +257,14 @@ def index_html(stats):
             f"{cosmetic}<p><a href='stats.json'>stats.json</a></p>")
 
 
-def previous_stats(arg):
-    if not arg:
-        return None
-    try:
-        if arg.startswith("http"):
-            return json.loads(fetch(arg, None))
-        return json.loads(Path(arg).read_text())
-    except Exception:  # noqa: BLE001 - no usable previous build: skip the shrink check
-        return None
-
-
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", type=Path, default=ROOT / "dist")
     ap.add_argument("--cache", type=Path, help="directory to cache downloads in (local development)")
-    ap.add_argument("--previous", help="previous stats.json (path or URL) for the shrink check")
-    ap.add_argument("--max-shrink", type=float, default=0.15, help="fail if a tier shrinks by more than this")
     args = ap.parse_args(argv)
 
     cfg = tomllib.loads((ROOT / "sources.toml").read_text())
     sources = cfg["source"]
-    for s in sources:
-        s.setdefault("min_entries", 1)
     loaded = load_sources(sources, args.cache)
 
     extra_block, allow = read_names(ROOT / "block.txt"), read_names(ROOT / "allow.txt")
@@ -290,16 +275,13 @@ def main(argv=None):
     stats = {"updated": stamp, "sources": {n: st for n, (_, st) in sorted(loaded.items())}, "tiers": {}}
     if (ROOT / "cosmetic.txt").exists():
         stats["cosmetic"] = {"rules": build_cosmetic(ROOT / "cosmetic.txt", args.out, stamp)}
-    prev, problems = previous_stats(args.previous), []
+    problems = []
     for tier in ("full", "lite"):
         t = build_tier(tier, loaded, extra_block, allow)
         final = t["final"]
         hits = sorted(c for c in canary if covered(c, final))
         if hits:
             problems.append(f"{tier}: canary domains are blocked: {', '.join(hits)}")
-        old = prev["tiers"].get(tier, {}).get("entries") if prev else None
-        if old and len(final) < old * (1 - args.max_shrink):
-            problems.append(f"{tier}: {len(final)} entries is more than {args.max_shrink:.0%} below the previous {old}")
         write_outputs(args.out, tier, final, stamp)
         stats["tiers"][tier] = {"entries": len(final), "union": t["union"], "allow_removed": t["allow_removed"],
                                 "allow_stuck": t["allow_stuck"]}

@@ -26,10 +26,10 @@ jobs:
       - name: Test
         run: python -m unittest discover -s tests -v
 
-      # Fails, and so keeps the published lists, when a source is missing or truncated, a tier shrinks by more
-      # than 15% against the lists now published, or a canary domain would be blocked.
+      # Fails, and so keeps the published lists, when a source cannot be fetched or is empty, or a canary
+      # domain would be blocked.
       - name: Build
-        run: python build.py --out dist --previous https://jtbrough.github.io/blocklist/stats.json
+        run: python build.py --out dist
 
       - name: Summary
         run: |

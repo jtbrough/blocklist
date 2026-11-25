@@ -63,8 +63,7 @@ scriptlets (`+js(`) and procedural `#?#` rules.
 
 The build exits non-zero, and the previously published lists stay up, when:
 
-- a source cannot be fetched, or parses to fewer domains than its `min_entries`;
-- a tier shrinks by more than 15% against the lists now published (`--max-shrink`);
+- a source cannot be fetched or parses to zero domains;
 - any domain in `canary.txt`, or a domain under it, would be blocked.
 
 CI emails you when a run fails.
@@ -73,7 +72,7 @@ CI emails you when a run fails.
 
 | File | Purpose |
 |---|---|
-| `sources.toml` | Every upstream list: `name`, `url`, `format` (`plain` or `adblock`), `tiers`, `min_entries` |
+| `sources.toml` | Every upstream list: `name`, `url`, `format` (`plain` or `adblock`), `tiers` |
 | `allow.txt` | Domains to unblock; removed with their subdomains |
 | `block.txt` | Extra domains to block in both tiers |
 | `cosmetic.txt` | Browser filter rules, written by hand and published as is (validated, de-duplicated) |
@@ -110,8 +109,7 @@ The `Build and publish blocklist` workflow runs on every push, nightly at 03:17 
 branches run the tests and the build only. A run from `main` also deploys `dist/` to GitHub Pages. The deploy sends the
 whole site, so the lists and `stats.json` always match. No list is committed to git, so the history stays small.
 
-To add a source, append a `[[source]]` block to `sources.toml` with a `min_entries` about 60% of its normal size, and
-push.
+To add a source, append a `[[source]]` block to `sources.toml` and push.
 
 ## Licence
 

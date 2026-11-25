@@ -106,5 +106,22 @@ class Cosmetic(unittest.TestCase):
             self.assertIn("bad.txt:2", str(e.exception))
 
 
+class LoadSources(unittest.TestCase):
+    def load(self, text):
+        src = [{"name": "x", "url": "u", "format": "plain", "tiers": ["full"]}]
+        orig, build.fetch = build.fetch, lambda url, cache: text
+        try:
+            return build.load_sources(src, None)
+        finally:
+            build.fetch = orig
+
+    def test_empty_source_fails(self):
+        with self.assertRaises(SystemExit):
+            self.load("# only a comment\n")
+
+    def test_small_source_passes(self):
+        self.assertEqual(self.load("0.0.0.0 a.example\n")["x"][0], {"a.example"})
+
+
 if __name__ == "__main__":
     unittest.main()
